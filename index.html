@@ -187,6 +187,9 @@
             <button class="opcao" onclick="addCheckbox()">
                 <i class="fas fa-check-square"></i>
             </button>
+            <button class="opcao" onclick="addImage()">
+                <input type="file" onchange="addImage(event)">
+            </button>
         </div>
         <div id="texto" contenteditable="true">
             Negrito<br>
@@ -256,6 +259,18 @@
             checkbox += "<input type='checkbox'>" + sel[i];
             document.execCommand("insertHTML", false, checkbox);
         }
+    }
+    // Função de adição de imagem.
+    function addImage(event) {
+        var reader = new FileReader();
+        reader.onload = function(){
+            var texto = document.getElementById("texto");
+            var img = document.createElement("img");
+            texto.appendChild(img);
+            img.src = reader.result;
+            img.style.width = "100%";
+        }
+        reader.readAsDataURL(event.target.files[0]);
     }
 </script>
 
