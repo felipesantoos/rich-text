@@ -20,6 +20,7 @@ Um editor de texto com formatação Rich-Text.<br>
 - [x] Remoção de recuo.
 - [x] Tamanho do texto.
 - [x] Linha horizontal.
+- [x] Família da fonte.
 - [ ] Título h1.
 - [ ] Título h2.
 - [ ] Título h3.
@@ -28,7 +29,6 @@ Um editor de texto com formatação Rich-Text.<br>
 - [ ] Título h6.
 - [ ] Citação.
 - [ ] Emoji.
-- [ ] Família da fonte.
 - [ ] Adicionar imagem.
 - [ ] Adicionar GIF.
 - [ ] Adicionar vídeo.
