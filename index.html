@@ -1,179 +1,262 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="utf-8">
-        <title>Rich-Text</title>
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/dropdown.css">
-        <link rel="stylesheet" href="css/icons.css">
-        <script src="https://kit.fontawesome.com/26c45b1e60.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <h1>Editor Rich-Text</h1>
-        <div id="editor">
-            <div id="menu">
-                <button class="opcao" onclick="format('bold')">
-                    <i class="fas fa-bold"></i>
-                </button>
-                <button class="opcao" onclick="format('italic')">
-                    <i class="fas fa-italic"></i>
-                </button>
-                <button class="opcao" onclick="format('underline')">
-                    <i class="fas fa-underline"></i>
-                </button>
-                <button class="opcao" onclick="format('strikethrough')">
-                    <i class="fas fa-strikethrough"></i>
-                </button>
-                <button class="opcao" onclick="format('superscript')">
-                    <i class="fas fa-superscript"></i>
-                </button>
-                <button class="opcao" onclick="format('subscript')">
-                    <i class="fas fa-subscript"></i>
-                </button>
-                <button class="opcao" onclick="format('insertUnorderedList')">
-                    <i class="fas fa-list-ul"></i>
-                </button>
-                <button class="opcao" onclick="format('insertOrderedList')">
-                    <i class="fas fa-list-ol"></i>
-                </button>
-                <button class="dropdown opcao">
-                    <i class="fas fa-tint"></i>
-                    <div class="dropdown-content">
-                        <a href="#" onclick="format('foreColor', 'white')">
-                            <span class="square white"></span>
-                            <span>Branco</span>
-                        </a>
-                        <a href="#" onclick="format('foreColor', 'black')">
-                            <span class="square black"></span>
-                            <span>Preto</span>
-                        </a>
-                        <a href="#" onclick="format('foreColor', 'red')">
-                            <span class="square red"></span>
-                            <span>Vermelho</span>
-                        </a>
-                        <a href="#" onclick="format('foreColor', 'blue')">
-                            <span class="square blue"></span>
-                            <span>Azul</span>
-                        </a>
-                        <a href="#" onclick="format('foreColor', 'green')">
-                            <span class="square green"></span>
-                            <span>Verde</span>
-                        </a>
-                        <a href="#" onclick="format('foreColor', 'yellow')">
-                            <span class="square yellow"></span>
-                            <span>Amarelo</span>
-                        </a>
-                        <a href="#" onclick="format('foreColor', 'purple')">
-                            <span class="square purple"></span>
-                            <span>Roxo</span>
-                        </a>
-                    </div>
-                </button>
-                <button class="dropdown opcao">
-                    <i class="fas fa-fill-drip"></i>
-                    <div class="dropdown-content">
-                        <a href="#" onclick="format('backColor', 'white')">
-                            <span class="square white"></span>
-                            <span>Branco</span>
-                        </a>
-                        <a href="#" onclick="format('backColor', 'black')">
-                            <span class="square black"></span>
-                            <span>Preto</span>
-                        </a>
-                        <a href="#" onclick="format('backColor', 'red')">
-                            <span class="square red"></span>
-                            <span>Vermelho</span>
-                        </a>
-                        <a href="#" onclick="format('backColor', 'blue')">
-                            <span class="square blue"></span>
-                            <span>Azul</span>
-                        </a>
-                        <a href="#" onclick="format('backColor', 'green')">
-                            <span class="square green"></span>
-                            <span>Verde</span>
-                        </a>
-                        <a href="#" onclick="format('backColor', 'yellow')">
-                            <span class="square yellow"></span>
-                            <span>Amarelo</span>
-                        </a>
-                        <a href="#" onclick="format('backColor', 'purple')">
-                            <span class="square purple"></span>
-                            <span>Roxo</span>
-                        </a>
-                    </div>
-                </button>
-                <button class="opcao" onclick="setUrl()">
-                    <i class="fas fa-link"></i>
-                </button>
-                <button class="opcao" onclick="format('justifyLeft')">
-                    <i class="fas fa-align-left"></i>
-                </button>
-                <button class="opcao" onclick="format('justifyCenter')">
-                    <i class="fas fa-align-center"></i>
-                </button>
-                <button class="opcao" onclick="format('justifyRight')">
-                    <i class="fas fa-align-right"></i>
-                </button>
-                <button class="opcao" onclick="format('justifyFull')">
-                    <i class="fas fa-align-justify"></i>
-                </button>
-                <button class="opcao" onclick="format('indent')">
-                    <i class="fas fa-indent"></i>
-                </button>
-                <button class="opcao" onclick="format('outdent')">
-                    <i class="fas fa-outdent"></i>
-                </button>
-                <button class="opcao" onclick="setFontSize()">
-                    <span class="text-size">T<span class="mini-t">T</span></span>
-                </button>
-                <button class="opcao" onclick="format('insertHorizontalRule')">
-                    <span class="dash">—</span>
-                </button>
-            </div>
-            <div id="texto" contenteditable="true">
-                Negrito<br>
-                Itálico<br>
-                Sublinhado<br>
-                Riscado<br>
-                Sobrescrito<br>
-                Subscrito<br>
-                Lista não ordenada 1<br>
-                Lista não ordenada 2<br>
-                Lista não ordenada 3<br>
-                Lista ordenada 1<br>
-                Lista ordenada 2<br>
-                Lista ordenada 3<br>
-                Cor do texto<br>
-                Cor de fundo<br>
-                Link (ex.: https://www.google.com/)<br>
-                Alinhamento à esquerda<br>
-                Alinhamento ao centro<br>
-                Alinhamento à direita<br>
-                Alinhamento justificado<br>
-                Adicionar recuo<br>
-                Remover recuo<br>
-                Tamanho do texto<br>
-                Linha horizontal<br>
-            </div>
+
+<head>
+    <meta charset="utf-8">
+    <title>Rich-Text</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dropdown.css">
+    <link rel="stylesheet" href="css/icons.css">
+    <link rel="stylesheet" href="css/font-family.css">
+    <script src="https://kit.fontawesome.com/26c45b1e60.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1 class="heading">Editor Rich-Text</h1>
+    <div id="editor">
+        <div id="menu">
+            <button class="opcao" onclick="format('bold')">
+                <i class="fas fa-bold"></i>
+            </button>
+            <button class="opcao" onclick="format('italic')">
+                <i class="fas fa-italic"></i>
+            </button>
+            <button class="opcao" onclick="format('underline')">
+                <i class="fas fa-underline"></i>
+            </button>
+            <button class="opcao" onclick="format('strikethrough')">
+                <i class="fas fa-strikethrough"></i>
+            </button>
+            <button class="opcao" onclick="format('superscript')">
+                <i class="fas fa-superscript"></i>
+            </button>
+            <button class="opcao" onclick="format('subscript')">
+                <i class="fas fa-subscript"></i>
+            </button>
+            <button class="opcao" onclick="format('insertUnorderedList')">
+                <i class="fas fa-list-ul"></i>
+            </button>
+            <button class="opcao" onclick="format('insertOrderedList')">
+                <i class="fas fa-list-ol"></i>
+            </button>
+            <button class="dropdown opcao">
+                <div>
+                    <i class="fas fa-font"></i>
+                    <div class="i-font-color"></div>
+                </div>
+                <div class="dropdown-content" style="min-width: 110px;">
+                    <a href="#" onclick="format('foreColor', 'white')">
+                        <span class="square white"></span>
+                        <span>Branco</span>
+                    </a>
+                    <a href="#" onclick="format('foreColor', 'black')">
+                        <span class="square black"></span>
+                        <span>Preto</span>
+                    </a>
+                    <a href="#" onclick="format('foreColor', 'red')">
+                        <span class="square red"></span>
+                        <span>Vermelho</span>
+                    </a>
+                    <a href="#" onclick="format('foreColor', 'blue')">
+                        <span class="square blue"></span>
+                        <span>Azul</span>
+                    </a>
+                    <a href="#" onclick="format('foreColor', 'green')">
+                        <span class="square green"></span>
+                        <span>Verde</span>
+                    </a>
+                    <a href="#" onclick="format('foreColor', 'yellow')">
+                        <span class="square yellow"></span>
+                        <span>Amarelo</span>
+                    </a>
+                    <a href="#" onclick="format('foreColor', 'purple')">
+                        <span class="square purple"></span>
+                        <span>Roxo</span>
+                    </a>
+                </div>
+            </button>
+            <button class="dropdown opcao">
+                <i class="fas fa-highlighter"></i>
+                <div class="dropdown-content" style="min-width: 110px;">
+                    <a href="#" onclick="format('backColor', 'white')">
+                        <span class="square white"></span>
+                        <span>Branco</span>
+                    </a>
+                    <a href="#" onclick="format('backColor', 'black')">
+                        <span class="square black"></span>
+                        <span>Preto</span>
+                    </a>
+                    <a href="#" onclick="format('backColor', 'red')">
+                        <span class="square red"></span>
+                        <span>Vermelho</span>
+                    </a>
+                    <a href="#" onclick="format('backColor', 'blue')">
+                        <span class="square blue"></span>
+                        <span>Azul</span>
+                    </a>
+                    <a href="#" onclick="format('backColor', 'green')">
+                        <span class="square green"></span>
+                        <span>Verde</span>
+                    </a>
+                    <a href="#" onclick="format('backColor', 'yellow')">
+                        <span class="square yellow"></span>
+                        <span>Amarelo</span>
+                    </a>
+                    <a href="#" onclick="format('backColor', 'purple')">
+                        <span class="square purple"></span>
+                        <span>Roxo</span>
+                    </a>
+                </div>
+            </button>
+            <button class="opcao" onclick="setUrl()">
+                <i class="fas fa-link"></i>
+            </button>
+            <button class="opcao" onclick="format('justifyLeft')">
+                <i class="fas fa-align-left"></i>
+            </button>
+            <button class="opcao" onclick="format('justifyCenter')">
+                <i class="fas fa-align-center"></i>
+            </button>
+            <button class="opcao" onclick="format('justifyRight')">
+                <i class="fas fa-align-right"></i>
+            </button>
+            <button class="opcao" onclick="format('justifyFull')">
+                <i class="fas fa-align-justify"></i>
+            </button>
+            <button class="opcao" onclick="format('indent')">
+                <i class="fas fa-indent"></i>
+            </button>
+            <button class="opcao" onclick="format('outdent')">
+                <i class="fas fa-outdent"></i>
+            </button>
+            <button class="opcao" onclick="setFontSize()">
+                <span class="i-text-size"><span class="i-mini-t">T</span>T</span>
+            </button>
+            <button class="opcao" onclick="format('insertHorizontalRule')">
+                <span class="i-horizontal-rule">—</span>
+            </button>
+            <button class="dropdown opcao">
+                <img class="i-font-family" src="icons/icon-choose-font.png" alt="F">
+                <div class="dropdown-content" style="min-width: 150px;">
+                    <a href="#" onclick="format('fontName', 'Arial')">
+                        <span style="font-family: Arial;">Arial</span>
+                    </a>
+                    <a href="#" onclick="format('fontName', 'Courier New')">
+                        <span style="font-family: 'Courier New';">Courier New</span>
+                    </a>
+                    <a href="#" onclick="format('fontName', 'Impact')">
+                        <span style="font-family: Impact;">Impact</span>
+                    </a>
+                    <a href="#" onclick="format('fontName', 'monospace')">
+                        <span style="font-family: monospace;">monospace</span>
+                    </a>
+                    <a href="#" onclick="format('fontName', 'Open Sans')">
+                        <span style="font-family: Open Sans;">Open Sans</span>
+                    </a>
+                    <a href="#" onclick="format('fontName', 'Times New Roman')">
+                        <span style="font-family: 'Times New Roman';">Times New Roman</span>
+                    </a>
+                    <a href="#" onclick="format('fontName', 'Ubuntu')">
+                        <span style="font-family: Ubuntu;">Ubuntu</span>
+                    </a>
+                </div>
+            </button>
+            <button class="dropdown opcao">
+                <i class="fas fa-heading"></i>
+                <div class="dropdown-content" style="min-width: 200px;">
+                    <a href="#" onclick="addHeading(1)">
+                        <h1>Cabeçalho 1</h1>
+                    </a>
+                    <a href="#" onclick="addHeading(2)">
+                        <h2>Cabeçalho 2</h2>
+                    </a>
+                    <a href="#" onclick="addHeading(3)">
+                        <h3>Cabeçalho 3</h3>
+                    </a>
+                    <a href="#" onclick="addHeading(4)">
+                        <h4>Cabeçalho 4</h4>
+                    </a>
+                    <a href="#" onclick="addHeading(5)">
+                        <h5>Cabeçalho 5</h5>
+                    </a>
+                    <a href="#" onclick="addHeading(6)">
+                        <h6>Cabeçalho 6</h6>
+                    </a>
+                </div>
+            </button>
+            <button class="opcao" onclick="addCheckbox()">
+                <i class="fas fa-check-square"></i>
+            </button>
         </div>
-    </body>
-    <script>
-        // Função de formatação.
-        function format(command, value){
-            document.execCommand(command, false, value);
+        <div id="texto" contenteditable="true">
+            Negrito<br>
+            Itálico<br>
+            Sublinhado<br>
+            Riscado<br>
+            Sobrescrito<br>
+            Subscrito<br>
+            Lista não ordenada 1<br>
+            Lista não ordenada 2<br>
+            Lista não ordenada 3<br>
+            Lista ordenada 1<br>
+            Lista ordenada 2<br>
+            Lista ordenada 3<br>
+            Cor do texto<br>
+            Cor de fundo<br>
+            Link (ex.: https://www.google.com/)<br>
+            Alinhamento à esquerda<br>
+            Alinhamento ao centro<br>
+            Alinhamento à direita<br>
+            Alinhamento justificado<br>
+            Adicionar recuo<br>
+            Remover recuo<br>
+            Tamanho do texto<br>
+            Linha horizontal<br>
+            Família da fonte<br>
+            Cabeçalho 1<br>
+            Cabeçalho 2<br>
+            Cabeçalho 3<br>
+            Cabeçalho 4<br>
+            Cabeçalho 5<br>
+            Cabeçalho 6
+        </div>
+    </div>
+</body>
+<script>
+    // Função de formatação.
+    function format(command, value) {
+        document.execCommand(command, false, value);
+    }
+    // Função de adição de URL.
+    function setUrl() {
+        var sel = document.getSelection();
+        var url = prompt("Digite a URL:");
+        var link = '<a href="' + url + '" target="_blank">' + sel + '</a>';
+        document.execCommand("insertHTML", false, link);
+    }
+    // Função de alteração do tamanho da fonte.
+    function setFontSize() {
+        var sel = document.getSelection();
+        var size = parseInt(prompt("Digite um número de 1 a 7:"));
+        document.execCommand("fontSize", false, size);
+    }
+    // Função de tipos de cabeçalho.
+    function addHeading(h) {
+        var sel = document.getSelection();
+        var heading = "<h" + h + ">" + sel + "</h" + h + ">";
+        document.execCommand('insertHTML', false, heading);
+    }
+    // Função de adição de checkbox.
+    function addCheckbox() {
+        var sel = document.getSelection().toString();
+        sel = sel.split("\n");
+        for (var i = 0; i < sel.length; i++) {
+            var checkbox = "";
+            if (i != 0) checkbox += "<br>";
+            checkbox += "<input type='checkbox'>" + sel[i];
+            document.execCommand("insertHTML", false, checkbox);
         }
-        // Função de adição de URL.
-        function setUrl(){
-            var sel = document.getSelection();
-            var url = prompt("Digite a URL:");
-            var link = '<a href="' + url + '" target="_blank">' + sel + '</a>';
-            document.execCommand("insertHTML", false, link);
-        }
-        // Função de alteração do tamanho da fonte.
-        function setFontSize(){
-            var sel = document.getSelection();
-            var size = parseInt(prompt("Digite um número de 1 a 7:"));
-            document.execCommand("fontSize", false, size);
-        }
-    </script>
+    }
+</script>
+
 </html>
