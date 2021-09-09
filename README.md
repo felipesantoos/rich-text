@@ -18,6 +18,7 @@ Um editor de texto com formatação Rich-Text.<br>
 - [x] Alinhamento justificado.
 - [x] Adição de recuo.
 - [x] Remoção de recuo.
+- [x] Tamanho do texto.
 - [x] Linha horizontal.
 - [ ] Título h1.
 - [ ] Título h2.
