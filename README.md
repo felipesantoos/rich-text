@@ -4,6 +4,7 @@ Um editor de texto com formatação Rich-Text.<br>
 - [x] Negrito.
 - [x] Itálico.
 - [x] Sublinhado.
+- [x] Riscado.
 - [x] Sobrescrito.
 - [x] Subscrito.
 - [x] Lista não ordenada.
@@ -12,9 +13,12 @@ Um editor de texto com formatação Rich-Text.<br>
 - [x] Cor de fundo.
 - [x] Link.
 - [x] Alinhamento à esquerda.
-- [x] Alinhamento à direita.
 - [x] Alinhamento ao centro.
+- [x] Alinhamento à direita.
 - [x] Alinhamento justificado.
+- [x] Adição de recuo.
+- [x] Remoção de recuo.
+- [x] Linha horizontal.
 - [ ] Título h1.
 - [ ] Título h2.
 - [ ] Título h3.
