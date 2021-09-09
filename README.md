@@ -21,15 +21,11 @@ Um editor de texto com formatação Rich-Text.<br>
 - [x] Tamanho do texto.
 - [x] Linha horizontal.
 - [x] Família da fonte.
-- [ ] Título h1.
-- [ ] Título h2.
-- [ ] Título h3.
-- [ ] Título h4.
-- [ ] Título h5.
-- [ ] Título h6.
+- [x] Cabeçalhos.
+- [x] Checklist.
+- [x] Adicionar imagem.
 - [ ] Citação.
 - [ ] Emoji.
-- [ ] Adicionar imagem.
 - [ ] Adicionar GIF.
 - [ ] Adicionar vídeo.
 - [ ] Áudio.
