@@ -12,7 +12,6 @@
 </head>
 
 <body>
-    <h1 class="heading">Editor Rich-Text</h1>
     <div id="editor">
         <div id="menu">
             <button class="opcao" onclick="format('bold')">
@@ -187,41 +186,18 @@
             <button class="opcao" onclick="addCheckbox()">
                 <i class="fas fa-check-square"></i>
             </button>
-            <button class="opcao" onclick="addImage()">
-                <input type="file" onchange="addImage(event)">
+            <button class="opcao" style="padding: 0px;">
+                <label class="i-image" for="up-img">
+                    <i class="fas fa-image"></i>
+                    <input id="up-img" type="file" onchange="addImage(event)">
+                </label>
             </button>
         </div>
         <div id="texto" contenteditable="true">
-            Negrito<br>
-            Itálico<br>
-            Sublinhado<br>
-            Riscado<br>
-            Sobrescrito<br>
-            Subscrito<br>
-            Lista não ordenada 1<br>
-            Lista não ordenada 2<br>
-            Lista não ordenada 3<br>
-            Lista ordenada 1<br>
-            Lista ordenada 2<br>
-            Lista ordenada 3<br>
-            Cor do texto<br>
-            Cor de fundo<br>
-            Link (ex.: https://www.google.com/)<br>
-            Alinhamento à esquerda<br>
-            Alinhamento ao centro<br>
-            Alinhamento à direita<br>
-            Alinhamento justificado<br>
-            Adicionar recuo<br>
-            Remover recuo<br>
-            Tamanho do texto<br>
-            Linha horizontal<br>
-            Família da fonte<br>
-            Cabeçalho 1<br>
-            Cabeçalho 2<br>
-            Cabeçalho 3<br>
-            Cabeçalho 4<br>
-            Cabeçalho 5<br>
-            Cabeçalho 6
+            Zenzile Miriam Makeba, também chamada de "Mama Africa", foi uma cantora, compositora, atriz, embaixadora da boa vontade da ONU e ativista pelos direitos humanos e contra o apartheid sul-africana.<br>
+            Seus gêneros musicais incluíam o jazz, World Music e Afro-Pop.<br>
+            Filha de pais suazi e xhosa, Makeba foi forçada a encontrar trabalho ainda criança, após a morte do pai.<br>
+            Ela teve seu primeiro casamento com somente dezessete anos, num relacionamento aparentemente abusivo e do qual deu à luz seu único filho, em 1950.
         </div>
     </div>
 </body>
@@ -256,7 +232,7 @@
         for (var i = 0; i < sel.length; i++) {
             var checkbox = "";
             if (i != 0) checkbox += "<br>";
-            checkbox += "<input type='checkbox'>" + sel[i];
+            checkbox += "<input type='checkbox'> " + sel[i];
             document.execCommand("insertHTML", false, checkbox);
         }
     }
@@ -268,7 +244,8 @@
             var img = document.createElement("img");
             texto.appendChild(img);
             img.src = reader.result;
-            img.style.width = "100%";
+            img.style.width = "50%";
+            img.style.margin = "5px 0px";
         }
         reader.readAsDataURL(event.target.files[0]);
     }

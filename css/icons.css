@@ -23,3 +23,12 @@
 .i-font-family {
     height: 16px;
 }
+
+.i-image {
+    cursor: pointer;
+    padding: 10px;
+}
+
+input[type="file"] {
+    display: none;
+}
