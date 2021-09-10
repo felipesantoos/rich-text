@@ -69,7 +69,7 @@ ul, ol {
 .image {
     position: relative;
     z-index: 0;
-    border: 0px solid transparent;
+    border: 1px solid transparent;
 }
 
 @media (max-width: 995px) {

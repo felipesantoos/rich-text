@@ -208,7 +208,7 @@
 
     // Permitir redimensionamento da imagem.
     $(document).on("click", ".image", function (e) {
-        $(this).css("border", "3px solid #00BFFF");
+        $(this).css("border", "1px solid blue");
         $(this).attr("id", "resizable");
         $(this).resizable();
         $(this).css("display", "inline");
@@ -220,7 +220,7 @@
         if(e.target.id !== "resizable") {
             var img = $("#resizable");
             img.resizable("destroy");
-            img.css("border", "0px solid transparent");
+            img.css("border", "1px solid transparent");
             img.css("display", "inline");
         }
     });
@@ -259,5 +259,4 @@
     tableColors("table-back-colors", "backColor");
 
 </script>
-
 </html>
