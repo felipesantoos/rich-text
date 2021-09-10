@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="css/font-family.css">
     <script src="https://kit.fontawesome.com/26c45b1e60.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 </head>
 
 <body>
@@ -142,8 +145,12 @@
             </button>
         </div>
         <div id="texto" contenteditable="true">
-            Nas artes gráficas, o termo negrito indica o uso de um traço mais grosso que o comum, utilizado para dar maior realce às palavras. Livros didáticos usam negrito para destacar os principais conceitos de cada tema que deve ser lembrado pelos alunos.<br>
-            Em tipografia, os tipos itálicos são fontes cursivas cujo desenho das letras minúsculas baseia-se numa estilizada forma caligráfica. Devido à influência da caligrafia, esses tipos podem inclinar-se ligeiramente para a direita.
+            Nas artes gráficas, o termo negrito indica o uso de um traço mais grosso que o comum, utilizado para dar
+            maior realce às palavras. Livros didáticos usam negrito para destacar os principais conceitos de cada tema
+            que deve ser lembrado pelos alunos.<br>
+            Em tipografia, os tipos itálicos são fontes cursivas cujo desenho das letras minúsculas baseia-se numa
+            estilizada forma caligráfica. Devido à influência da caligrafia, esses tipos podem inclinar-se ligeiramente
+            para a direita.
         </div>
     </div>
 </body>
@@ -185,26 +192,48 @@
     // Função de adição de imagem.
     function addImage(event) {
         var reader = new FileReader();
-        reader.onload = function(){
+        reader.onload = function () {
+            var br = document.createElement("br");
             var texto = document.getElementById("texto");
             var img = document.createElement("img");
+            texto.appendChild(br);
             texto.appendChild(img);
             img.src = reader.result;
             img.style.width = "50%";
             img.style.margin = "5px 0px";
+            img.classList.add("image");
         }
         reader.readAsDataURL(event.target.files[0]);
     }
 
+    // Permitir redimensionamento da imagem.
+    $(document).on("click", ".image", function (e) {
+        $(this).css("border", "3px solid #00BFFF");
+        $(this).attr("id", "resizable");
+        $(this).resizable();
+        $(this).css("display", "inline");
+        $(".ui-wrapper").css("display", "inline-block");
+    });
+
+    // Remover permissão de de redimensionamento.
+    $("#texto").click(function(e) {
+        if(e.target.id !== "resizable") {
+            var img = $("#resizable");
+            img.resizable("destroy");
+            img.css("border", "0px solid transparent");
+            img.css("display", "inline");
+        }
+    });
+
     // Cores das tabelas de cores.
     var colors = [
-        "000000", "414141", "666666", "9a9a9a", "b8b8b8", "cdcdcd", "dadada", "efefef", "f3f3f3", "ffffff", 
+        "000000", "414141", "666666", "9a9a9a", "b8b8b8", "cdcdcd", "dadada", "efefef", "f3f3f3", "ffffff",
         "9b3216", "ed5127", "f39820", "fdf400", "72ea12", "6cf6fd", "4987e8", "2458ff", "a065ff", "eb74fe",
-        "e7bab1", "f4cdcd", "fce6ce", "fef2cd", "daead5", "d1e0e3", "cadbf8", "d0e3f3", "dad3ea", "ebd2dd", 
-        "de7e6b", "ea9a9a", "f9cc9d", "fde69a", "b7d8a9", "a3c5ca", "a6c3f4", "a0c6e9", "b6a9d8", "d6a7bf", 
-        "ce4522", "e16566", "f6b36b", "fcd966", "94c57e", "76a6b1", "6e9feb", "6faadd", "8f7dc4", "c37ca2", 
-        "a93719", "ce4521", "e69235", "f1c32e", "6aa94e", "43828f", "3978d9", "3a86c8", "674da8", "a84c79", 
-        "872a11", "9c3216", "b55f18", "c19110", "377716", "1c4e5c", "0554cd", "125395", "342776", "752945", 
+        "e7bab1", "f4cdcd", "fce6ce", "fef2cd", "daead5", "d1e0e3", "cadbf8", "d0e3f3", "dad3ea", "ebd2dd",
+        "de7e6b", "ea9a9a", "f9cc9d", "fde69a", "b7d8a9", "a3c5ca", "a6c3f4", "a0c6e9", "b6a9d8", "d6a7bf",
+        "ce4522", "e16566", "f6b36b", "fcd966", "94c57e", "76a6b1", "6e9feb", "6faadd", "8f7dc4", "c37ca2",
+        "a93719", "ce4521", "e69235", "f1c32e", "6aa94e", "43828f", "3978d9", "3a86c8", "674da8", "a84c79",
+        "872a11", "9c3216", "b55f18", "c19110", "377716", "1c4e5c", "0554cd", "125395", "342776", "752945",
         "5c1a08", "671e0b", "783d0c", "806007", "244d0a", "0f313b", "154388", "083463", "1c164c", "4c182c"
     ];
 
