@@ -17,97 +17,26 @@
 <body>
     <div id="editor">
         <div id="menu">
-            <button class="opcao" onclick="format('bold')">
-                <i class="fas fa-bold"></i>
-            </button>
-            <button class="opcao" onclick="format('italic')">
-                <i class="fas fa-italic"></i>
-            </button>
-            <button class="opcao" onclick="format('underline')">
-                <i class="fas fa-underline"></i>
-            </button>
-            <button class="opcao" onclick="format('strikethrough')">
-                <i class="fas fa-strikethrough"></i>
-            </button>
-            <button class="opcao" onclick="format('superscript')">
-                <i class="fas fa-superscript"></i>
-            </button>
-            <button class="opcao" onclick="format('subscript')">
-                <i class="fas fa-subscript"></i>
-            </button>
-            <button class="opcao" onclick="format('insertUnorderedList')">
-                <i class="fas fa-list-ul"></i>
-            </button>
-            <button class="opcao" onclick="format('insertOrderedList')">
-                <i class="fas fa-list-ol"></i>
-            </button>
-            <button class="dropdown-colors opcao">
-                <div>
-                    <i class="fas fa-font i-font-color"></i>
-                </div>
-                <div class="dropdown-colors-content">
-                    <table id="table-fore-colors"></table>
-                </div>
-            </button>
-            <button class="dropdown-colors opcao">
-                <div>
-                    <i class="fas fa-highlighter"></i>
-                </div>
-                <div class="dropdown-colors-content">
-                    <table id="table-back-colors"></table>
-                </div>
-            </button>
-            <button class="opcao" onclick="setUrl()">
-                <i class="fas fa-link"></i>
-            </button>
-            <button class="opcao" onclick="format('justifyLeft')">
-                <i class="fas fa-align-left"></i>
-            </button>
-            <button class="opcao" onclick="format('justifyCenter')">
-                <i class="fas fa-align-center"></i>
-            </button>
-            <button class="opcao" onclick="format('justifyRight')">
-                <i class="fas fa-align-right"></i>
-            </button>
-            <button class="opcao" onclick="format('justifyFull')">
-                <i class="fas fa-align-justify"></i>
-            </button>
-            <button class="opcao" onclick="format('indent')">
-                <i class="fas fa-indent"></i>
-            </button>
-            <button class="opcao" onclick="format('outdent')">
-                <i class="fas fa-outdent"></i>
-            </button>
-            <button class="dropdown opcao">
-                <span class="i-text-size"><span class="i-mini-t">T</span>T</span>
-                <div class="dropdown-content">
-                    <a href="#" onclick="setFontSize(1)">
-                        <font size="1">1</font>
-                    </a>
-                    <a href="#" onclick="setFontSize(2)">
-                        <font size="2">2</font>
-                    </a>
-                    <a href="#" onclick="setFontSize(3)">
-                        <font size="3">3</font>
-                    </a>
-                    <a href="#" onclick="setFontSize(4)">
-                        <font size="4">4</font>
-                    </a>
-                    <a href="#" onclick="setFontSize(5)">
-                        <font size="5">5</font>
-                    </a>
-                    <a href="#" onclick="setFontSize(6)">
-                        <font size="6">6</font>
-                    </a>
-                    <a href="#" onclick="setFontSize(7)">
-                        <font size="7">7</font>
-                    </a>
-                </div>
-            </button>
-            <button class="opcao" onclick="format('insertHorizontalRule')">
-                <span class="i-horizontal-rule">—</span>
-            </button>
-            <button class="dropdown opcao">
+            <button id="bold"></button>
+            <button id="italic"></button>
+            <button id="underline"></button>
+            <button id="strikethrough"></button>
+            <button id="superscript"></button>
+            <button id="subscript"></button>
+            <button id="unordered-list"></button>
+            <button id="ordered-list"></button>
+            <button id="dd-fore-color"></button>
+            <button id="dd-back-color"></button>
+            <button id="align-left"></button>
+            <button id="align-center"></button>
+            <button id="align-right"></button>
+            <button id="align-justify"></button>
+            <button id="indent"></button>
+            <button id="outdent"></button>
+            <button id="url"></button>
+            <button id="font-size"></button>
+            <button id="horizontal-rule"></button>
+            <button class="dropdown opt">
                 <img class="i-font-family" src="icons/icon-choose-font.png" alt="F">
                 <div class="dropdown-content" style="min-width: 150px;">
                     <a href="#" onclick="format('fontName', 'Arial')">
@@ -133,7 +62,7 @@
                     </a>
                 </div>
             </button>
-            <button class="dropdown opcao">
+            <button class="dropdown opt">
                 <i class="fas fa-heading"></i>
                 <div class="dropdown-content" style="min-width: 200px;">
                     <a href="#" onclick="addHeading(1)">
@@ -156,16 +85,16 @@
                     </a>
                 </div>
             </button>
-            <button class="opcao" onclick="addCheckbox()">
+            <button class="opt" onclick="addCheckbox()">
                 <i class="far fa-check-square"></i>
             </button>
-            <button class="opcao" style="padding: 0px;">
+            <button class="opt" style="padding: 0px;">
                 <label class="i-image" for="up-img">
                     <i class="far fa-image"></i>
                     <input id="up-img" type="file" onchange="addImage(event)">
                 </label>
             </button>
-            <button class="dropdown-emojis opcao">
+            <button class="dropdown-emojis opt">
                 <div>
                     <i class="far fa-grin-alt"></i>
                 </div>
@@ -185,29 +114,149 @@
     </div>
 </body>
 <script>
-    // Função de formatação.
+
+    // Modelo de botão padrão de formatação.
+    function defaultButtons(id, icon, format) {
+        var button = document.getElementById(id);
+        button.classList.add("opt");
+        button.setAttribute("onclick", "format('" + format + "')");
+        var i = document.createElement("i");
+        i.classList = icon;
+        button.appendChild(i);
+    }
+
+    // Contrução de botões-padrão de formatação.
+    defaultButtons("bold", "fas fa-bold", "bold");
+    defaultButtons("italic", "fas fa-italic", "italic");
+    defaultButtons("underline", "fas fa-underline", "underline");
+    defaultButtons("strikethrough", "fas fa-strikethrough", "strikethrough");
+    defaultButtons("superscript", "fas fa-superscript", "superscript");
+    defaultButtons("subscript", "fas fa-subscript", "subscript");
+    defaultButtons("unordered-list", "fas fa-list-ul", "insertUnorderedList");
+    defaultButtons("ordered-list", "fas fa-list-ol", "insertOrderedList");
+    defaultButtons("align-left", "fas fa-align-left", "justifyLeft");
+    defaultButtons("align-center", "fas fa-align-center", "justifyCenter");
+    defaultButtons("align-right", "fas fa-align-right", "justifyRight");
+    defaultButtons("align-justify", "fas fa-align-justify", "justifyFull");
+    defaultButtons("indent", "fas fa-indent", "indent");
+    defaultButtons("outdent", "fas fa-outdent", "outdent");
+    defaultButtons("horizontal-rule", "fas fa-horizontal-rule", "insertHorizontalRule");
+
+    // Ícone pago.
+    function createHorizontalRuleIcon() {
+        $(".fa-horizontal-rule").append(document.createTextNode("—"));
+    }
+
+    // Contruir ícone de linha horizonal.
+    createHorizontalRuleIcon();
+
+    // Modelo de botão para invocar funções variadas.
+    function button(id, icon, func) {
+        var button = document.getElementById(id);
+        button.classList.add("opt");
+        button.setAttribute("onclick", func);
+        var i = document.createElement("i");
+        i.classList = icon;
+        button.appendChild(i);
+    }
+
+    // Construção dos botões para invocar funções variadas.
+    button("url", "fas fa-link", "setUrl()");
+
+    // Modelo de dropdown de cores.
+    function dropdownColors(id, classes, iconClasses, contentClasses, contentId) {
+        var button = document.getElementById(id);
+        button.classList = classes;
+        var divIcon = document.createElement("div");
+        var i = document.createElement("i");
+        i.classList = iconClasses;
+        divIcon.appendChild(i);
+        button.appendChild(divIcon);
+        var divContent = document.createElement("div");
+        divContent.classList = contentClasses;
+        var table = document.createElement("table");
+        table.id = contentId;
+        divContent.appendChild(table);
+        button.appendChild(divContent);
+    }
+
+    // Construção dos dropdowns de cor do texto e de fundo.
+    dropdownColors("dd-fore-color", "dd-colors opt", "fas fa-font i-font-color", "dd-colors-content", "table-fore-colors");
+    dropdownColors("dd-back-color", "dd-colors opt", "fas fa-highlighter", "dd-colors-content", "table-back-colors");
+
+    // Função de contrução do botão de alteração do tamanho da fonte.
+    function dropdownFontSize(){
+        var button = document.getElementById("font-size");
+        button.classList = "dropdown opt";
+        var smallT = document.createElement("span");
+        smallT.classList = "i-small-t";
+        smallT.appendChild(document.createTextNode("T"));
+        button.appendChild(smallT);
+        var bigT = document.createElement("span");
+        bigT.classList = "i-big-t";
+        bigT.appendChild(document.createTextNode("T"));
+        button.appendChild(bigT);
+        var divContent = document.createElement("dropdown-content");
+        divContent.classList = "dropdown-content";
+        divContent.style.width = "270px";
+
+        // Opções.
+        for (var i = 1; i <= 7; i++) {
+            var a = document.createElement("a");
+            a.setAttribute("href", "#");
+            a.setAttribute("onclick", "setFontSize(" + i + ")");
+            var font = document.createElement("font");
+            font.setAttribute("size", i);
+            var fontText = document.createTextNode("Tamanho " + i);
+            font.appendChild(fontText)
+
+            // Tamanho padrão.
+            if(i == 3) {
+                var spanDef = document.createElement("span");
+                spanDef.style.float = "right";
+                spanDef.style.fontSize = "12px";
+                spanDef.style.fontStyle = "italic";
+                spanDef.style.color = "grey";
+                spanDef.appendChild(document.createTextNode("(padrão)"));
+                font.appendChild(spanDef);
+            }
+
+            a.appendChild(font);
+            divContent.appendChild(a);
+        }
+
+        button.appendChild(divContent);
+    }
+
+    // Contrução do botão de alteração do tamanho da fonte.
+    dropdownFontSize();
+
+    // Execução de formatação.
     function format(command, value) {
         document.execCommand(command, false, value);
     }
-    // Função de adição de URL.
+    // Adição de URL.
     function setUrl() {
         var sel = document.getSelection();
         var url = prompt("Digite a URL:");
         var link = '<a href="' + url + '" target="_blank">' + sel + '</a>';
         document.execCommand("insertHTML", false, link);
     }
-    // Função de alteração do tamanho da fonte.
+
+    // Alteração do tamanho da fonte.
     function setFontSize(size) {
         var sel = document.getSelection();
         document.execCommand("fontSize", false, size);
     }
-    // Função de tipos de cabeçalho.
+
+    // Adição de diferentes tipos de cabeçalho.
     function addHeading(h) {
         var sel = document.getSelection();
         var heading = "<h" + h + ">" + sel + "</h" + h + ">";
         document.execCommand('insertHTML', false, heading);
     }
-    // Função de adição de checkbox.
+
+    // Adição de caixas de seleção.
     function addCheckbox() {
         var sel = document.getSelection().toString();
         sel = sel.split("\n");
@@ -218,7 +267,8 @@
             document.execCommand("insertHTML", false, checkbox);
         }
     }
-    // Função de adição de imagem.
+
+    // Adição de imagem.
     function addImage(event) {
         var reader = new FileReader();
         reader.onload = function () {
@@ -235,8 +285,9 @@
         reader.readAsDataURL(event.target.files[0]);
     }
 
-    // Permitir redimensionamento da imagem.
+    // Permitição de redimensionamento de imagem.
     $(document).on("click", ".image", function (e) {
+        $("#resizable").removeAttr("id");
         $(this).css("border", "1px solid blue");
         $(this).attr("id", "resizable");
         $(this).resizable();
@@ -244,17 +295,17 @@
         $(".ui-wrapper").css("display", "inline-block");
     });
 
-    // Remover permissão de de redimensionamento.
+    // Bloqueio de redimensionamento de imagem.
     $("#texto").click(function(e) {
         if(e.target.id !== "resizable") {
-            var img = $("#resizable");
-            img.resizable("destroy");
-            img.css("border", "1px solid transparent");
-            img.css("display", "inline");
+            $("#resizable").resizable("destroy");
+            $("#resizable").removeAttr("id");
+            $(".image").css("border", "1px solid transparent");
+            $(".image").css("display", "inline");
         }
     });
 
-    // Cores das tabelas de cores.
+    // Códigos hexadecimais das cores-padrão.
     var colors = [
         "000000", "414141", "666666", "9a9a9a", "b8b8b8", "cdcdcd", "dadada", "efefef", "f3f3f3", "ffffff",
         "9b3216", "ed5127", "f39820", "fdf400", "72ea12", "6cf6fd", "4987e8", "2458ff", "a065ff", "eb74fe",
@@ -266,7 +317,7 @@
         "5c1a08", "671e0b", "783d0c", "806007", "244d0a", "0f313b", "154388", "083463", "1c164c", "4c182c"
     ];
 
-    // Construir tabela de cores do texto.
+    // Modelo de tabela de cores.
     function tableColors(id, ground) {
         var table = document.getElementById(id);
         var ctrl = 0;
@@ -284,10 +335,11 @@
         }
     }
 
+    // Contrução das tabelas de cores do texto e de fundo.
     tableColors("table-fore-colors", "foreColor");
     tableColors("table-back-colors", "backColor");
 
-    // Função de geração da tabela de emojis.
+    // Lista de emojis-padrão.
     var people_and_faces = "😄 😃 😀 😊 ☺ 😉 😍 😘 😚 😗 😙 😜 😝 😛 😳 😁 😔 😌 😒 😞 😣 😢 😂 😭 😪 😥 😰 😅 😓 😩 😫 😨 😱 😠 😡 😤 😖 😆 😋 😷 😎 😴 😵 😲 😟 😦 😧 😈 👿 😮 😬 😐 😕 😯 😶 😇 😏 😑 👲 👳 👮 👷 💂 👶 👦 👧 👨 👩 👴 👵 👱 👼 👸 👹 👺 💀 👽 💩";
     var animals = "😺 😸 😻 😽 😼 🙀 😿 😹 😾 🐵 🙈 🙉 🙊 🐶 🐺 🐱 🐭 🐹 🐸 🐯 🐨 🐻 🐷 🐽 🐮 🐗 🐒 🐴 🐑 🐘 🐼 🐧 🐦 🐤 🐥 🐣 🐔 🐍 🐢 🐛 🐝 🐜 🐞 🐌 🐙 🐚 🐠 🐟 🐬 🐳 🐋 🐄 🐏 🐀 🐃 🐅 🐇 🐉 🐎 🐐 🐓 🐕 🐖 🐁 🐂 🐲 🐡 🐊 🐫 🐪 🐆 🐈 🐩 🐾";
     var plants_and_flowers = "💐 🌸 🌷 🍀 🌹 🌻 🌺 🍁 🍃 🍂 🌿 🌾 🍄 🌵 🌴 🌲 🌳 🌰 🌱 🌼 🍎 🍏 🍊 🍋 🍒 🍇 🍉 🍓 🍑 🍈 🍌 🍐 🍍 🍠 🍆 🍅 🌽 💮";
@@ -306,8 +358,8 @@
     var symbols = "🚻 🚹 🚺 🚼 🚾 🚰 🚮 ♿ 🚭 🛂 🛄 🛅 🛃 🚫 🔞 📵 🚯 🚱 🚳 🚷 🚸 ⛔ ♻ 💠 ➿";
     var other = "🎍 🎎 🎒 🎓 🎏 🎆 🎇 🎐 🎑 🎃 👻 🎅 🎄 🎁 🎋 🎉 🎊 🎈 🎌 🔮 🔆 🔅 🛁 🛀 🚿 🚽 🚪 🚬 💣 🔫 🔪 💊 💉 🔥 ✨ 🌟 💫 💥 💢 💦 💧 💤 💨 👂 👀 👃 👅 👄 🚶 🏃 💃 👯 🙆 🙅 💁 🙋 💆 💇 👰 🙎 🙍 🙇 🔯 💹 💲 💱 ❌ ⭕ ✖ ➕ ➕ ➗ ♠ ♥ ♣ ♦ ✔ ☑ 🔘 🔗 ➰ 〰 〽 🔱 ◼ ◻ ◾ ◽ ▪ ▫ 🔲 🔳 ⚫ ⚪ 🔴 🔵 ⬜ ⬛ 🔶 🔷 🔸 🔹 🈁 🈯 🈳 🈵 🈴 🈲 🉐 🈹 🈺 🈶 🈚 🈷 🈸 🈂 🉑 ㊙ ㊗ ✳ ❇ ✴ ❎ ✅";
 
-    function tableEmojis(textTitle, emojis) {
-        
+    // Modelo de tabela de emojis.
+    function emojisTable(textTitle, emojis) {
         emojis = emojis.split(" ");
         var table = document.getElementById("table-emojis");
         var ctrl = 0;
@@ -339,25 +391,26 @@
         }
     }
 
-    tableEmojis("Pessoas e faces", people_and_faces);
-    tableEmojis("Animais", animals);
-    tableEmojis("Plantas e flores", plants_and_flowers);
-    tableEmojis("Modas e acessórios", fashion_and_accessories);
-    tableEmojis("Corações e amor", hearts_and_love);
-    tableEmojis("Clima e tempo", weather_and_time);
-    tableEmojis("Comidas e bebidas", food_and_drinks);
-    tableEmojis("Esportes, jogos e hobbies", sports_games_and_hobbies);
-    tableEmojis("Locais e pontos de referência de edifícios", buildings_locations_and_landmarks);
-    tableEmojis("Transporte", transport);
-    tableEmojis("Livros, envelopes e papelaria", books_envelopes_and_stationery);
-    tableEmojis("Tecnologia", technology);
-    tableEmojis("Números e letras", numbers_and_letters);
-    tableEmojis("Sinais de mão e setas", hand_signs_and_arrows);
-    tableEmojis("Signos do zodíaco e bandeiras", zodiac_signs_and_flags);
-    tableEmojis("Símbolos", symbols);
-    tableEmojis("Outros", other);
+    // Construção da tabela de emojis.
+    emojisTable("Pessoas e faces", people_and_faces);
+    emojisTable("Animais", animals);
+    emojisTable("Plantas e flores", plants_and_flowers);
+    emojisTable("Modas e acessórios", fashion_and_accessories);
+    emojisTable("Corações e amor", hearts_and_love);
+    emojisTable("Clima e tempo", weather_and_time);
+    emojisTable("Comidas e bebidas", food_and_drinks);
+    emojisTable("Esportes, jogos e hobbies", sports_games_and_hobbies);
+    emojisTable("Locais e pontos de referência de edifícios", buildings_locations_and_landmarks);
+    emojisTable("Transporte", transport);
+    emojisTable("Livros, envelopes e papelaria", books_envelopes_and_stationery);
+    emojisTable("Tecnologia", technology);
+    emojisTable("Números e letras", numbers_and_letters);
+    emojisTable("Sinais de mão e setas", hand_signs_and_arrows);
+    emojisTable("Signos do zodíaco e bandeiras", zodiac_signs_and_flags);
+    emojisTable("Símbolos", symbols);
+    emojisTable("Outros", other);
 
-    // Função de adição de emoji.
+    // Adição de emoji.
     function addEmoji(emoji) {
         var sel = document.getSelection();
         document.execCommand('insertText', false, emoji);

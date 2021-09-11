@@ -80,12 +80,12 @@
 }
 
 /* Colors */
-.dropdown-colors {
+.dd-colors {
     position: relative;
     display: inline-block;
 }
   
-.dropdown-colors-content {
+.dd-colors-content {
     cursor: auto;
     display: none;
     position: absolute;
@@ -100,7 +100,7 @@
     z-index: 1;
 }
  
-.dropdown-colors:hover .dropdown-colors-content {
+.dd-colors:hover .dd-colors-content {
     display: block;
 }
 
@@ -115,12 +115,6 @@
 
 .button-color:hover {
     box-shadow: 0px 0px 1px 1px lightgrey;
-}
-
-@media (max-width: 995px) {
-    .dropdown-colors-content {
-        left: -197.5px;
-    }
 }
 
 /* Emojis */
