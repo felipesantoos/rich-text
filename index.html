@@ -78,8 +78,31 @@
             <button class="opcao" onclick="format('outdent')">
                 <i class="fas fa-outdent"></i>
             </button>
-            <button class="opcao" onclick="setFontSize()">
+            <button class="dropdown opcao">
                 <span class="i-text-size"><span class="i-mini-t">T</span>T</span>
+                <div class="dropdown-content">
+                    <a href="#" onclick="setFontSize(1)">
+                        <font size="1">1</font>
+                    </a>
+                    <a href="#" onclick="setFontSize(2)">
+                        <font size="2">2</font>
+                    </a>
+                    <a href="#" onclick="setFontSize(3)">
+                        <font size="3">3</font>
+                    </a>
+                    <a href="#" onclick="setFontSize(4)">
+                        <font size="4">4</font>
+                    </a>
+                    <a href="#" onclick="setFontSize(5)">
+                        <font size="5">5</font>
+                    </a>
+                    <a href="#" onclick="setFontSize(6)">
+                        <font size="6">6</font>
+                    </a>
+                    <a href="#" onclick="setFontSize(7)">
+                        <font size="7">7</font>
+                    </a>
+                </div>
             </button>
             <button class="opcao" onclick="format('insertHorizontalRule')">
                 <span class="i-horizontal-rule">—</span>
@@ -174,9 +197,8 @@
         document.execCommand("insertHTML", false, link);
     }
     // Função de alteração do tamanho da fonte.
-    function setFontSize() {
+    function setFontSize(size) {
         var sel = document.getSelection();
-        var size = parseInt(prompt("Digite um número de 1 a 7:"));
         document.execCommand("fontSize", false, size);
     }
     // Função de tipos de cabeçalho.
