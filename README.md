@@ -25,8 +25,8 @@ Um editor de texto com formatação Rich-Text.<br>
 - [x] Checklist.
 - [x] Adicionar imagem.
 - [x] Redimensionar imagem.
+- [x] Emoji.
 - [ ] Citação.
-- [ ] Emoji.
 - [ ] Adicionar GIF.
 - [ ] Adicionar vídeo.
 - [ ] Áudio.

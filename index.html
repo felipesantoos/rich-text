@@ -6,7 +6,6 @@
     <title>Rich-Text</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/dropdown.css">
-    <link rel="stylesheet" href="css/downdown-colors.css">
     <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="css/font-family.css">
     <script src="https://kit.fontawesome.com/26c45b1e60.js" crossorigin="anonymous"></script>
@@ -135,13 +134,21 @@
                 </div>
             </button>
             <button class="opcao" onclick="addCheckbox()">
-                <i class="fas fa-check-square"></i>
+                <i class="far fa-check-square"></i>
             </button>
             <button class="opcao" style="padding: 0px;">
                 <label class="i-image" for="up-img">
-                    <i class="fas fa-image"></i>
+                    <i class="far fa-image"></i>
                     <input id="up-img" type="file" onchange="addImage(event)">
                 </label>
+            </button>
+            <button class="dropdown-emojis opcao">
+                <div>
+                    <i class="far fa-grin-alt"></i>
+                </div>
+                <div class="dropdown-emojis-content">
+                    <table id="table-emojis"></table>
+                </div>
             </button>
         </div>
         <div id="texto" contenteditable="true">
@@ -257,6 +264,82 @@
 
     tableColors("table-fore-colors", "foreColor");
     tableColors("table-back-colors", "backColor");
+
+    // Função de geração da tabela de emojis.
+    var people_and_faces = "😄 😃 😀 😊 ☺ 😉 😍 😘 😚 😗 😙 😜 😝 😛 😳 😁 😔 😌 😒 😞 😣 😢 😂 😭 😪 😥 😰 😅 😓 😩 😫 😨 😱 😠 😡 😤 😖 😆 😋 😷 😎 😴 😵 😲 😟 😦 😧 😈 👿 😮 😬 😐 😕 😯 😶 😇 😏 😑 👲 👳 👮 👷 💂 👶 👦 👧 👨 👩 👴 👵 👱 👼 👸 👹 👺 💀 👽 💩";
+    var animals = "😺 😸 😻 😽 😼 🙀 😿 😹 😾 🐵 🙈 🙉 🙊 🐶 🐺 🐱 🐭 🐹 🐸 🐯 🐨 🐻 🐷 🐽 🐮 🐗 🐒 🐴 🐑 🐘 🐼 🐧 🐦 🐤 🐥 🐣 🐔 🐍 🐢 🐛 🐝 🐜 🐞 🐌 🐙 🐚 🐠 🐟 🐬 🐳 🐋 🐄 🐏 🐀 🐃 🐅 🐇 🐉 🐎 🐐 🐓 🐕 🐖 🐁 🐂 🐲 🐡 🐊 🐫 🐪 🐆 🐈 🐩 🐾";
+    var plants_and_flowers = "💐 🌸 🌷 🍀 🌹 🌻 🌺 🍁 🍃 🍂 🌿 🌾 🍄 🌵 🌴 🌲 🌳 🌰 🌱 🌼 🍎 🍏 🍊 🍋 🍒 🍇 🍉 🍓 🍑 🍈 🍌 🍐 🍍 🍠 🍆 🍅 🌽 💮";
+    var fashion_and_accessories = "🎩 👑 👒 👟 👞 👡 👠 👢 👕 👔 👚 👗 🎽 👖 👘 👙 💼 👜 👝 👛 👓 🎀 🌂 💄";
+    var hearts_and_love = "💛 💙 💜 💚 ❤ 💔 💗 💓 💕 💖 💞 💘 💌 💋 💍 💎 👤 👥 💬 👣 💭 💝 👫 👪 👬 👭 💏 💑 💟";
+    var weather_and_time = "🌐 🌞 🌝 🌚 🌑 🌒 🌓 🌔 🌕 🌖 🌗 🌘 🌜 🌛 🌙 🌍 🌎 🌏 🌋 🌌 🌠 ⭐ ☀ ⛅ ☁ ⚡ ☔ ❄ ⛄ 🌀 🌁 🌈 🌊 🕛 🕧 🕐 🕜 🕑 🕝 🕒 🕞 🕓 🕟 🕔 🕠 🕕 🕖 🕗 🕘 🕙 🕚 🕡 🕢 🕣 🕤 🕥 🕦";
+    var food_and_drinks = "☕ 🍵 🍶 🍼 🍺 🍻 🍸 🍹 🍷 🍴 🍕 🍔 🍟 🍗 🍖 🍝 🍛 🍤 🍱 🍣 🍥 🍙 🍘 🍚 🍜 🍲 🍢 🍡 🍳 🍞 🍩 🍮 🍦 🍨 🍧 🎂 🍰 🍪 🍫 🍬 🍭 🍯";
+    var sports_games_and_hobbies = "🎨 🎬 🎤 🎧 🎼 🎵 🎶 🎹 🎻 🎺 🎷 🎸 👾 🎮 🃏 🎴 🀄 🎲 🎯 🏈 🏀 ⚽ ⚾ 🎾 🎱 🏉 🎳 ⛳ 🚵 🚴 🏁 🏇 🏆 🎿 🏂 🏊 🏄 🎣";
+    var buildings_locations_and_landmarks = "🏠 🏡 🏫 🏢 🏣 🏥 🏦 🏪 🏩 🏨 💒 ⛪ 🏬 🏤 🌇 🌆 🏯 🏰 ⛺ 🏭 🗼 🗾 🗻 🌄 🌅 🌃 🗽 🌉 🎠 🎡 ⛲ 🎢";
+    var transport = "🚢 ⛵ 🚤 🚣 ⚓ 🚀 ✈ 💺 🚁 🚂 🚊 🚉 🚞 🚆 🚄 🚅 🚈 🚇 🚝 🚋 🚃 🚎 🚌 🚍 🚙 🚘 🚗 🚕 🚖 🚛 🚚 🚨 🚓 🚔 🚒 🚑 🚐 🚲 🚡 🚟 🚠 🚜 💈 🚏 🎫 🚦 🚥 ⚠ 🚧 🔰 ⛽ 🏮 🎰 ♨ 🗿 🎪 🎭 📍 🚩";
+    var books_envelopes_and_stationery = "📧 📥 📤 ✉ 📩 📨 📯 📫 📪 📬 📭 📮 📦 📝 📄 📃 📑 📊 📈 📉 📜 📋 📅 📆 📇 📁 📂 ✂ 📌 📎 ✒ ✏ 📏 📐 📕 📗 📘 📙 📓 📔 📒 📚 📖 🔖 📛 📛 🔭 📰 💰 💴 💵 💷 💶 💳 💸";
+    var technology = "🎥 📷 📹 📼 💿 📀 💽 💾 💻 📱 ☎ 📞 📟 📠 📡 📺 📻 🔊 🔉 🔈 🔇 🔔 🔕 📢 📣 ⏳ ⌛ ⏰ ⌚ 🔓 🔒 🔏 🔐 🔑 🔎 💡 🔦 🔌 🔋 🔍 🔧 🔩 🔨 📲 📶 🎦 📳 📴";
+    var numbers_and_letters = "0️⃣ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ 🔟 🔢 #️⃣ 🔡 🔤 ℹ 🆗 🆕 🆙 🆒 🆓 🆖 🅿 Ⓜ 🆑 🆘 🆔 🆚 🅰 🅱 🆎 🅾 © ® 💯 ™ 🔠 🏧 ‼ ⁉ ❗ ❓ ❕ ❔";
+    var hand_signs_and_arrows = "👍 👎 👌 👊 ✊ ✌ 👋 ✋ 👐 👆 👇 👉 👈 🙌 🙏 ☝ 👏 💪 💅 ⬇ ⬅ ➡ ↗ ↖ ↘ ↙ ↔ ↕ 🔄 ◀ ▶ 🔼 🔽 ↩ ↪ ⏪ ⏩ ⏫ ⏬ ⤵ ⤴ 🔀 🔁 🔂 🔝 🔚 🔙 🔛 🔜 🔃 🔺 🔻 ⬆";
+    var zodiac_signs_and_flags = "♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓ ⛎ 🇯🇵 🇰🇷 🇩🇪 🇨🇳 🇺🇸 🇫🇷 🇪🇸 🇮🇹 🇷🇺 🇬🇧";
+    var symbols = "🚻 🚹 🚺 🚼 🚾 🚰 🚮 ♿ 🚭 🛂 🛄 🛅 🛃 🚫 🔞 📵 🚯 🚱 🚳 🚷 🚸 ⛔ ♻ 💠 ➿";
+    var other = "🎍 🎎 🎒 🎓 🎏 🎆 🎇 🎐 🎑 🎃 👻 🎅 🎄 🎁 🎋 🎉 🎊 🎈 🎌 🔮 🔆 🔅 🛁 🛀 🚿 🚽 🚪 🚬 💣 🔫 🔪 💊 💉 🔥 ✨ 🌟 💫 💥 💢 💦 💧 💤 💨 👂 👀 👃 👅 👄 🚶 🏃 💃 👯 🙆 🙅 💁 🙋 💆 💇 👰 🙎 🙍 🙇 🔯 💹 💲 💱 ❌ ⭕ ✖ ➕ ➕ ➗ ♠ ♥ ♣ ♦ ✔ ☑ 🔘 🔗 ➰ 〰 〽 🔱 ◼ ◻ ◾ ◽ ▪ ▫ 🔲 🔳 ⚫ ⚪ 🔴 🔵 ⬜ ⬛ 🔶 🔷 🔸 🔹 🈁 🈯 🈳 🈵 🈴 🈲 🉐 🈹 🈺 🈶 🈚 🈷 🈸 🈂 🉑 ㊙ ㊗ ✳ ❇ ✴ ❎ ✅";
+
+    function tableEmojis(textTitle, emojis) {
+        
+        emojis = emojis.split(" ");
+        var table = document.getElementById("table-emojis");
+        var ctrl = 0;
+        var title = document.createElement("div");
+        title.style.margin = "10px 5px";
+        title.style.textAlign = "left";
+        title.style.fontWeight = "bold";
+        title.style.fontSize = "16px";
+        title.appendChild(document.createTextNode(textTitle));
+        var r = table.insertRow(-1);
+        var c = r.insertCell(0);
+        c.colSpan = 10;
+        c.appendChild(title);
+        for (var i = 0; i < 11; i++) {
+            var row = table.insertRow(-1);
+            for (var j = 0; j < 10; j++) {
+                if(emojis[j + ctrl] != null){
+                    var cell = row.insertCell(j);
+                    var button = document.createElement("button");
+                    var span = document.createElement("span");
+                    span.classList.add("emoji");
+                    span.appendChild(document.createTextNode(emojis[j + ctrl]));
+                    button.appendChild(span);
+                    button.setAttribute("onclick", "addEmoji('" + emojis[j + ctrl] + "')");
+                    cell.appendChild(button);
+                }
+            }
+            ctrl += 10;
+        }
+    }
+
+    tableEmojis("Pessoas e faces", people_and_faces);
+    tableEmojis("Animais", animals);
+    tableEmojis("Plantas e flores", plants_and_flowers);
+    tableEmojis("Modas e acessórios", fashion_and_accessories);
+    tableEmojis("Corações e amor", hearts_and_love);
+    tableEmojis("Clima e tempo", weather_and_time);
+    tableEmojis("Comidas e bebidas", food_and_drinks);
+    tableEmojis("Esportes, jogos e hobbies", sports_games_and_hobbies);
+    tableEmojis("Locais e pontos de referência de edifícios", buildings_locations_and_landmarks);
+    tableEmojis("Transporte", transport);
+    tableEmojis("Livros, envelopes e papelaria", books_envelopes_and_stationery);
+    tableEmojis("Tecnologia", technology);
+    tableEmojis("Números e letras", numbers_and_letters);
+    tableEmojis("Sinais de mão e setas", hand_signs_and_arrows);
+    tableEmojis("Signos do zodíaco e bandeiras", zodiac_signs_and_flags);
+    tableEmojis("Símbolos", symbols);
+    tableEmojis("Outros", other);
+
+    // Função de adição de emoji.
+    function addEmoji(emoji) {
+        var sel = document.getSelection();
+        document.execCommand('insertText', false, emoji);
+    }
 
 </script>
 </html>
