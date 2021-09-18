@@ -8,6 +8,10 @@ body {
     background-color: #dadce0;
 }
 
+#editor {
+    margin-bottom: 500px;
+}
+
 #menu {
     display: flex;
     position: fixed;

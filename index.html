@@ -103,10 +103,70 @@
                 </div>
             </button>
         </div>
-        <div id="texto" contenteditable="true"></div>
+        <div id="texto" contenteditable="true">
+            Selecione os trechos que quer formatar e clique em uma das opções de formatação.<br><br>
+
+            Teste o texto negrito.<br>
+            Teste o texto itálico.<br>
+            Teste o texto sublinhado.<br>
+            Teste o texto riscado.<br>
+            Teste o texto sobrescrito.<br>
+            Teste o texto subscrito.<br><br>
+            
+            Teste a lista não ordenada.<br>
+            Item 1<br>
+            Item 2<br>
+            Item 3<br><br>
+            
+            Teste a lista ordenada:<br>
+            Item 1<br>
+            Item 2<br>
+            Item 3<br><br>
+
+            Teste a cor do texto.<br>
+            Teste a cor de fundo.<br>
+            Teste a mistura da cor do texto com a cor do fundo.<br><br>
+
+            Teste os alinhamentos:<br>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<br><br>
+
+            Teste a indentação.<br>
+            Adicione um link (ex.: https://www.google.com.br).<br>
+            Altere o tamanho da fonte.<br>
+            Adicione uma linha horizontal para separar os conteúdos.<br>
+            Altere a família da fonte.<br>
+            Adicione um cabeçalho.<br><br>
+            Adicione uma lista de afazeres:<br>
+            Tarefa 1<br>
+            Tarefa 2<br>
+            Tarefa 3<br><br>
+
+            Adicione imagens e redimensione-as clicando em cima delas e depois clicando no canto inferior direito e arrastando o mouse. Para redimensionar mantendo a proporção, mantenha o SHIFT pressionado enquanto arrasta o mouse.<br>
+            Adicione emojis.
+        </div>
     </div>
 </body>
 <script>
+
+    // Selected text.
+    var selectedText = "";
+    $("#texto").click(function() {
+        selectedText = document.getSelection();
+    });
+
+    // Desabilitar rolagem da página.
+    function disableScrolling(){
+        var x = window.scrollX;
+        var y = window.scrollY;
+        window.onscroll = function(){
+            window.scrollTo(x, y);
+        };
+    }
+
+    // Habilitar rolagem da página.
+    function enableScrolling(){
+        window.onscroll = function(){};
+    }
 
     // Modelo de botão padrão de formatação.
     function defaultButtons(id, icon, format) {
@@ -226,7 +286,9 @@
 
     // Execução de formatação.
     function format(command, value) {
+        disableScrolling();
         document.execCommand(command, false, value);
+        setTimeout(enableScrolling, 1);
     }
     // Adição de URL.
     function setUrl() {
@@ -239,14 +301,18 @@
     // Alteração do tamanho da fonte.
     function setFontSize(size) {
         var sel = document.getSelection();
+        disableScrolling();
         document.execCommand("fontSize", false, size);
+        setTimeout(enableScrolling, 1);
     }
 
     // Adição de diferentes tipos de cabeçalho.
     function addHeading(h) {
         var sel = document.getSelection();
-        var heading = "<h" + h + ">" + sel + "</h" + h + ">";
-        document.execCommand('insertHTML', false, heading);
+        var heading = "<h" + h + ">";
+        disableScrolling();
+        document.execCommand('formatBlock', false, heading);
+        setTimeout(enableScrolling, 1);
     }
 
     // Adição de caixas de seleção.
