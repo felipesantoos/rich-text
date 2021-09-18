@@ -29,3 +29,4 @@ Um editor de texto com formatação Rich-Text.<br>
 - [ ] Citação.
 - [ ] Adicionar vídeo.
 - [ ] Áudio.
+- [ ] Adicionar um atalho do teclado para cada funcionalidade.
