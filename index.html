@@ -36,72 +36,11 @@
             <button id="url"></button>
             <button id="font-size"></button>
             <button id="horizontal-rule"></button>
-            <button class="dropdown opt">
-                <img class="i-font-family" src="icons/icon-choose-font.png" alt="F">
-                <div class="dropdown-content" style="min-width: 150px;">
-                    <a href="#" onclick="format('fontName', 'Arial')">
-                        <span style="font-family: Arial;">Arial</span>
-                    </a>
-                    <a href="#" onclick="format('fontName', 'Courier New')">
-                        <span style="font-family: 'Courier New';">Courier New</span>
-                    </a>
-                    <a href="#" onclick="format('fontName', 'Impact')">
-                        <span style="font-family: Impact;">Impact</span>
-                    </a>
-                    <a href="#" onclick="format('fontName', 'monospace')">
-                        <span style="font-family: monospace;">monospace</span>
-                    </a>
-                    <a href="#" onclick="format('fontName', 'Open Sans')">
-                        <span style="font-family: Open Sans;">Open Sans</span>
-                    </a>
-                    <a href="#" onclick="format('fontName', 'Times New Roman')">
-                        <span style="font-family: 'Times New Roman';">Times New Roman</span>
-                    </a>
-                    <a href="#" onclick="format('fontName', 'Ubuntu')">
-                        <span style="font-family: Ubuntu;">Ubuntu</span>
-                    </a>
-                </div>
-            </button>
-            <button class="dropdown opt">
-                <i class="fas fa-heading"></i>
-                <div class="dropdown-content" style="min-width: 200px;">
-                    <a href="#" onclick="addHeading(1)">
-                        <h1>Cabeçalho 1</h1>
-                    </a>
-                    <a href="#" onclick="addHeading(2)">
-                        <h2>Cabeçalho 2</h2>
-                    </a>
-                    <a href="#" onclick="addHeading(3)">
-                        <h3>Cabeçalho 3</h3>
-                    </a>
-                    <a href="#" onclick="addHeading(4)">
-                        <h4>Cabeçalho 4</h4>
-                    </a>
-                    <a href="#" onclick="addHeading(5)">
-                        <h5>Cabeçalho 5</h5>
-                    </a>
-                    <a href="#" onclick="addHeading(6)">
-                        <h6>Cabeçalho 6</h6>
-                    </a>
-                </div>
-            </button>
-            <button class="opt" onclick="addCheckbox()">
-                <i class="far fa-check-square"></i>
-            </button>
-            <button class="opt" style="padding: 0px;">
-                <label class="i-image" for="up-img">
-                    <i class="far fa-image"></i>
-                    <input id="up-img" type="file" onchange="addImage(event)">
-                </label>
-            </button>
-            <button class="dropdown-emojis opt">
-                <div>
-                    <i class="far fa-grin-alt"></i>
-                </div>
-                <div class="dropdown-emojis-content">
-                    <table id="table-emojis"></table>
-                </div>
-            </button>
+            <button id="font-family"></button>
+            <button id="heading"></button>
+            <button id="checkbox"></button>
+            <button id="image"></button>
+            <button id="emojis"></button>
         </div>
         <div id="texto" contenteditable="true">
             Selecione os trechos que quer formatar e clique em uma das opções de formatação.<br><br>

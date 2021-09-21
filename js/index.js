@@ -65,6 +65,7 @@ function button(id, icon, func) {
 
 // Construção dos botões para invocar funções variadas.
 button("url", "fas fa-link", "setUrl()");
+button("checkbox", "far fa-check-square", "addCheckbox()");
 
 // Modelo de dropdown de cores.
 function dropdownColors(id, classes, iconClasses, contentClasses, contentId) {
@@ -99,7 +100,7 @@ function dropdownFontSize(){
     bigT.classList = "i-big-t";
     bigT.appendChild(document.createTextNode("T"));
     button.appendChild(bigT);
-    var divContent = document.createElement("dropdown-content");
+    var divContent = document.createElement("div");
     divContent.classList = "dropdown-content";
     divContent.style.width = "270px";
 
@@ -134,12 +135,130 @@ function dropdownFontSize(){
 // Contrução do botão de alteração do tamanho da fonte.
 dropdownFontSize();
 
+// Função de contrução do botão de alteração do família da fonte.
+function dropdownFontFamily(){
+
+    var fontFamilyList = ["Arial", "Courier New", "Impact", "monospace", "Open Sans", "Times New Roman", "Ubuntu"];
+
+    var button = document.getElementById("font-family");
+    button.classList = "dropdown opt";
+    var imgF = document.createElement("img");
+    imgF.classList = "i-font-family";
+    imgF.src = "icons/icon-choose-font.png";
+    button.appendChild(imgF);
+    var divContent = document.createElement("div");
+    divContent.classList = "dropdown-content";
+    divContent.style.minWidth = "190px";
+
+    // Opções.
+    for (var i = 0; i < 7; i++) {
+        var a = document.createElement("a");
+        a.setAttribute("href", "#");
+        a.setAttribute("onclick", "format('fontName', '" + fontFamilyList[i] + "')");
+        var span = document.createElement("span");
+        span.style.fontFamily = fontFamilyList[i];
+        var spanText = document.createTextNode(fontFamilyList[i]);
+        span.appendChild(spanText)
+
+        // Tamanho padrão.
+        if(i == 0) {
+            var spanDef = document.createElement("span");
+            spanDef.style.float = "right";
+            spanDef.style.fontSize = "12px";
+            spanDef.style.fontStyle = "italic";
+            spanDef.style.color = "grey";
+            spanDef.appendChild(document.createTextNode("(padrão)"));
+            span.appendChild(spanDef);
+        }
+
+        a.appendChild(span);
+        divContent.appendChild(a);
+    }
+
+    button.appendChild(divContent);
+}
+
+// Contrução do botão de alteração da familía da fonte.
+dropdownFontFamily();
+
+// Função de contrução do botão de adição de cabeçalhos.
+function dropdownHeading(){
+    var button = document.getElementById("heading");
+    button.classList = "dropdown opt";
+    var icon = document.createElement("i");
+    icon.classList = "fas fa-heading";
+    button.appendChild(icon);
+    var divContent = document.createElement("div");
+    divContent.classList = "dropdown-content";
+    divContent.style.minWidth = "200px";
+
+    // Opções.
+    for (var i = 1; i <= 6; i++) {
+        var a = document.createElement("a");
+        a.setAttribute("href", "#");
+        a.setAttribute("onclick", "addHeading("+ i + ")");
+        var h = document.createElement("h" + i);
+        var hText = document.createTextNode("Cabeçalho " + i);
+        h.appendChild(hText)
+        a.appendChild(h);
+        divContent.appendChild(a);
+    }
+
+    button.appendChild(divContent);
+}
+
+// Contrução do botão de alteração da familía da fonte.
+dropdownHeading();
+
+// Função de contrução do botão de adição de imagem e GIF.
+function buttonImage() {
+    var button = document.getElementById("image");
+    button.classList = "opt";
+    button.style.padding = "0px";
+    var label = document.createElement("label");
+    label.classList = "i-image";
+    label.setAttribute("for", "up-img");
+    button.appendChild(label);
+    var icon = document.createElement("i");
+    icon.classList = "far fa-image";
+    label.appendChild(icon);
+    var input = document.createElement("input");
+    input.setAttribute("id", "up-img");
+    input.setAttribute("type", "file");
+    input.setAttribute("onchange", "addImage(event)");
+    label.appendChild(input);
+}
+
+// Construção do botão de adição de imagem e GIF.
+buttonImage();
+
+// Função de construção do botão da tabela de emojis.
+function buttonEmojis() {
+    var button = document.getElementById("emojis");
+    button.setAttribute("class", "dropdown-emojis opt");
+    var divIcon = document.createElement("div");
+    button.appendChild(divIcon);
+    var icon = document.createElement("i");
+    divIcon.appendChild(icon);
+    icon.setAttribute("class", "far fa-grin-alt");
+    var divContent = document.createElement("div");
+    button.appendChild(divContent);
+    divContent.setAttribute("class", "dropdown-emojis-content");
+    var table = document.createElement("table");
+    divContent.appendChild(table);
+    table.setAttribute("id", "table-emojis");
+}
+
+// Construção do botão da tabela de emojis.
+buttonEmojis();
+
 // Execução de formatação.
 function format(command, value) {
     disableScrolling();
     document.execCommand(command, false, value);
     setTimeout(enableScrolling, 1);
 }
+
 // Adição de URL.
 function setUrl() {
     var sel = document.getSelection();
