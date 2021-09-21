@@ -273,6 +273,7 @@ function setFontSize(size) {
     disableScrolling();
     document.execCommand("fontSize", false, size);
     setTimeout(enableScrolling, 1);
+    isOverflown();
 }
 
 // Adição de diferentes tipos de cabeçalho.
@@ -442,4 +443,22 @@ emojisTable("Outros", other);
 function addEmoji(emoji) {
     var sel = document.getSelection();
     document.execCommand('insertText', false, emoji);
+}
+
+function addCitation() {
+    var sel = document.getSelection();
+    var quote = '<div class="quote">' + sel + '</div>';
+    document.execCommand("insertHTML", false, quote);
+}
+
+function isOverflown() {
+    var quotes = document.getElementsByClassName("quote");
+    for(var i = 0; i < quotes.length; i++) {
+        if(quotes[i].scrollHeight > quotes[i].clientHeight) {
+            var height = quotes[i].scrollHeight;
+            quotes[i].style.height = height + "px";
+        } else {
+            quotes[i].style.height = "25px";
+        }
+    }
 }

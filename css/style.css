@@ -81,3 +81,12 @@ ul, ol {
         display: block;
     }
 }
+
+.quote {
+    border-left: 3px solid black;
+    padding-left: 10px;
+    height: 25px;
+    padding-top: 5px;
+    vertical-align: middle;
+    margin: 10px 0px;
+}
