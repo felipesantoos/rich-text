@@ -1,6 +1,6 @@
 # Rich-Text
 Um editor de texto com formatação Rich-Text.<br>
-### Funcionalidades
+# Funcionalidades
 - [x] Negrito.
 - [x] Itálico.
 - [x] Sublinhado.
@@ -30,3 +30,9 @@ Um editor de texto com formatação Rich-Text.<br>
 - [ ] Adicionar vídeo.
 - [ ] Áudio.
 - [ ] Adicionar um atalho do teclado para cada funcionalidade.
+
+# Screenshots
+<img src="screenshots/1.png" alt="Image 1">
+<img src="screenshots/2.png" alt="Image 2">
+<img src="screenshots/3.png" alt="Image 3">
+<img src="screenshots/4.png" alt="Image 4">
