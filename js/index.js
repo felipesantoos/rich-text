@@ -1,9 +1,3 @@
-// Selected text.
-var selectedText = "";
-$("#texto").click(function() {
-    selectedText = document.getSelection();
-});
-
 // Desabilitar rolagem da página.
 function disableScrolling(){
     var x = window.scrollX;
@@ -21,7 +15,7 @@ function enableScrolling(){
 // Modelo de botão padrão de formatação.
 function defaultButtons(id, icon, format) {
     var button = document.getElementById(id);
-    button.classList.add("opt");
+    button.classList.add("option");
     button.setAttribute("onclick", "format('" + format + "')");
     var i = document.createElement("i");
     i.classList = icon;
@@ -29,22 +23,22 @@ function defaultButtons(id, icon, format) {
 }
 
 // Contrução de botões-padrão de formatação.
-defaultButtons("bold", "fas fa-bold", "bold");
-defaultButtons("italic", "fas fa-italic", "italic");
-defaultButtons("underline", "fas fa-underline", "underline");
-defaultButtons("strikethrough", "fas fa-strikethrough", "strikethrough");
-defaultButtons("superscript", "fas fa-superscript", "superscript");
-defaultButtons("subscript", "fas fa-subscript", "subscript");
-defaultButtons("unordered-list", "fas fa-list-ul", "insertUnorderedList");
-defaultButtons("ordered-list", "fas fa-list-ol", "insertOrderedList");
-defaultButtons("align-left", "fas fa-align-left", "justifyLeft");
-defaultButtons("align-center", "fas fa-align-center", "justifyCenter");
-defaultButtons("align-right", "fas fa-align-right", "justifyRight");
-defaultButtons("align-justify", "fas fa-align-justify", "justifyFull");
-defaultButtons("indent", "fas fa-indent", "indent");
-defaultButtons("outdent", "fas fa-outdent", "outdent");
-defaultButtons("horizontal-rule", "fas fa-horizontal-rule", "insertHorizontalRule");
-
+defaultButtons("bold", "fa fa-bold", "bold");
+defaultButtons("italic", "fa fa-italic", "italic");
+defaultButtons("underline", "fa fa-underline", "underline");
+defaultButtons("strikethrough", "fa fa-strikethrough", "strikethrough");
+defaultButtons("superscript", "fa fa-superscript", "superscript");
+defaultButtons("subscript", "fa fa-subscript", "subscript");
+defaultButtons("unordered-list", "fa fa-list-ul", "insertUnorderedList");
+defaultButtons("ordered-list", "fa fa-list-ol", "insertOrderedList");
+defaultButtons("align-left", "fa fa-align-left", "justifyLeft");
+defaultButtons("align-center", "fa fa-align-center", "justifyCenter");
+defaultButtons("align-right", "fa fa-align-right", "justifyRight");
+defaultButtons("align-justify", "fa fa-align-justify", "justifyFull");
+defaultButtons("indent", "fa fa-indent", "indent");
+defaultButtons("outdent", "fa fa-outdent", "outdent");
+defaultButtons("horizontal-rule", "fa fa-horizontal-rule", "insertHorizontalRule");
+defaultButtons("eraser", "fa fa-eraser", "removeFormat");
 // Ícone pago.
 function createHorizontalRuleIcon() {
     $(".fa-horizontal-rule").append(document.createTextNode("—"));
@@ -56,7 +50,7 @@ createHorizontalRuleIcon();
 // Modelo de botão para invocar funções variadas.
 function button(id, icon, func) {
     var button = document.getElementById(id);
-    button.classList.add("opt");
+    button.classList.add("option");
     button.setAttribute("onclick", func);
     var i = document.createElement("i");
     i.classList = icon;
@@ -64,11 +58,12 @@ function button(id, icon, func) {
 }
 
 // Construção dos botões para invocar funções variadas.
-button("url", "fas fa-link", "setUrl()");
-button("checkbox", "far fa-check-square", "addCheckbox()");
+button("url", "fa fa-link", "setUrl()");
+button("checkbox", "fa fa-check-square", "addCheckbox()");
+button("quote", "fa fa-quote-left", "addQuote()");
 
 // Modelo de dropdown de cores.
-function dropdownColors(id, classes, iconClasses, contentClasses, contentId) {
+function ddColors(id, classes, iconClasses, contentClasses, contentId) {
     var button = document.getElementById(id);
     button.classList = classes;
     var divIcon = document.createElement("div");
@@ -85,13 +80,13 @@ function dropdownColors(id, classes, iconClasses, contentClasses, contentId) {
 }
 
 // Construção dos dropdowns de cor do texto e de fundo.
-dropdownColors("dd-fore-color", "dd-colors opt", "fas fa-font i-font-color", "dd-colors-content", "table-fore-colors");
-dropdownColors("dd-back-color", "dd-colors opt", "fas fa-highlighter", "dd-colors-content", "table-back-colors");
+ddColors("dd-fore-color", "dd-clrs option", "fa fa-font i-fore-color", "dd-clrs-cont", "table-fore-colors");
+ddColors("dd-back-color", "dd-clrs option", "fa fa-pencil-square i-back-color", "dd-clrs-cont", "table-back-colors");
 
 // Função de contrução do botão de alteração do tamanho da fonte.
-function dropdownFontSize(){
+function ddFontSize(){
     var button = document.getElementById("font-size");
-    button.classList = "dropdown opt";
+    button.classList = "dd-def option";
     var smallT = document.createElement("span");
     smallT.classList = "i-small-t";
     smallT.appendChild(document.createTextNode("T"));
@@ -101,7 +96,7 @@ function dropdownFontSize(){
     bigT.appendChild(document.createTextNode("T"));
     button.appendChild(bigT);
     var divContent = document.createElement("div");
-    divContent.classList = "dropdown-content";
+    divContent.classList = "dd-def-cont";
     divContent.style.width = "270px";
 
     // Opções.
@@ -133,21 +128,29 @@ function dropdownFontSize(){
 }
 
 // Contrução do botão de alteração do tamanho da fonte.
-dropdownFontSize();
+ddFontSize();
 
 // Função de contrução do botão de alteração do família da fonte.
-function dropdownFontFamily(){
+function ddFontFamily(){
 
-    var fontFamilyList = ["Arial", "Courier New", "Impact", "monospace", "Open Sans", "Times New Roman", "Ubuntu"];
+    var fontFamilyList = [
+        "Arial", 
+        "Courier New", 
+        "Impact", 
+        "monospace", 
+        "Open Sans", 
+        "Times New Roman", 
+        "Ubuntu",
+    ];
 
     var button = document.getElementById("font-family");
-    button.classList = "dropdown opt";
+    button.classList = "dd-def option";
     var imgF = document.createElement("img");
     imgF.classList = "i-font-family";
     imgF.src = "icons/icon-choose-font.png";
     button.appendChild(imgF);
     var divContent = document.createElement("div");
-    divContent.classList = "dropdown-content";
+    divContent.classList = "dd-def-cont";
     divContent.style.minWidth = "190px";
 
     // Opções.
@@ -179,17 +182,17 @@ function dropdownFontFamily(){
 }
 
 // Contrução do botão de alteração da familía da fonte.
-dropdownFontFamily();
+ddFontFamily();
 
 // Função de contrução do botão de adição de cabeçalhos.
-function dropdownHeading(){
+function ddHeading(){
     var button = document.getElementById("heading");
-    button.classList = "dropdown opt";
+    button.classList = "dd-def option";
     var icon = document.createElement("i");
-    icon.classList = "fas fa-heading";
+    icon.classList = "fa fa-header";
     button.appendChild(icon);
     var divContent = document.createElement("div");
-    divContent.classList = "dropdown-content";
+    divContent.classList = "dd-def-cont";
     divContent.style.minWidth = "200px";
 
     // Opções.
@@ -207,20 +210,20 @@ function dropdownHeading(){
     button.appendChild(divContent);
 }
 
-// Contrução do botão de alteração da familía da fonte.
-dropdownHeading();
+// Contrução do botão de adição de cabeçalho.
+ddHeading();
 
 // Função de contrução do botão de adição de imagem e GIF.
 function buttonImage() {
     var button = document.getElementById("image");
-    button.classList = "opt";
+    button.classList = "option";
     button.style.padding = "0px";
     var label = document.createElement("label");
     label.classList = "i-image";
     label.setAttribute("for", "up-img");
     button.appendChild(label);
     var icon = document.createElement("i");
-    icon.classList = "far fa-image";
+    icon.classList = "fa fa-image";
     label.appendChild(icon);
     var input = document.createElement("input");
     input.setAttribute("id", "up-img");
@@ -235,15 +238,15 @@ buttonImage();
 // Função de construção do botão da tabela de emojis.
 function buttonEmojis() {
     var button = document.getElementById("emojis");
-    button.setAttribute("class", "dropdown-emojis opt");
+    button.setAttribute("class", "dd-emjs option");
     var divIcon = document.createElement("div");
     button.appendChild(divIcon);
     var icon = document.createElement("i");
     divIcon.appendChild(icon);
-    icon.setAttribute("class", "far fa-grin-alt");
+    icon.setAttribute("class", "fa fa-smile-o");
     var divContent = document.createElement("div");
     button.appendChild(divContent);
-    divContent.setAttribute("class", "dropdown-emojis-content");
+    divContent.setAttribute("class", "dd-emjs-cont");
     var table = document.createElement("table");
     divContent.appendChild(table);
     table.setAttribute("id", "table-emojis");
@@ -273,7 +276,9 @@ function setFontSize(size) {
     disableScrolling();
     document.execCommand("fontSize", false, size);
     setTimeout(enableScrolling, 1);
-    setQuoteSize(size);
+    if (size != 3) {
+        setQuoteSize();
+    }
 }
 
 // Adição de diferentes tipos de cabeçalho.
@@ -289,12 +294,11 @@ function addHeading(h) {
 function addCheckbox() {
     var sel = document.getSelection().toString();
     sel = sel.split("\n");
-    for (var i = 0; i < sel.length; i++) {
-        var checkbox = "";
-        if (i != 0) checkbox += "<br>";
-        checkbox += "<input type='checkbox'> " + sel[i];
-        document.execCommand("insertHTML", false, checkbox);
+    var checkbox = "";
+    for(var i = 0; i < sel.length; i++) {
+        checkbox += `<input type='checkbox'> ${sel[i]}<br>`;
     }
+    document.execCommand('insertHTML', false, checkbox);
 }
 
 // Adição de imagem.
@@ -302,7 +306,7 @@ function addImage(event) {
     var reader = new FileReader();
     reader.onload = function () {
         var br = document.createElement("br");
-        var texto = document.getElementById("texto");
+        var texto = document.getElementById("main");
         var img = document.createElement("img");
         texto.appendChild(br);
         texto.appendChild(img);
@@ -324,8 +328,8 @@ $(document).on("click", ".image", function (e) {
     $(".ui-wrapper").css("display", "inline-block");
 });
 
-// Bloqueio de redimensionamento de imagem.
-$("#texto").click(function(e) {
+// Bloqueio de redimensionamento de imagem no campo de pergunta.
+$("#main").click(function(e) {
     if(e.target.id !== "resizable") {
         $("#resizable").resizable("destroy");
         $("#resizable").removeAttr("id");
@@ -356,7 +360,7 @@ function tableColors(id, ground) {
             var cell = row.insertCell(j);
             var button = document.createElement("button");
             button.setAttribute("onclick", "format('" + ground + "', '#" + colors[j + ctrl] + "')");
-            button.classList.add("button-color");
+            button.classList.add("btn-clr");
             button.style.backgroundColor = "#" + colors[j + ctrl];
             cell.appendChild(button);
         }
@@ -445,7 +449,7 @@ function addEmoji(emoji) {
     document.execCommand('insertText', false, emoji);
 }
 
-function addCitation() {
+function addQuote() {
     var sel = document.getSelection();
     var new_quote = '<div class="quote">' + sel + '</div>';
     document.execCommand("insertHTML", false, new_quote);
@@ -458,21 +462,49 @@ function addCitation() {
         quotes[i].style.height = "25px";
         quotes[i].style.verticalAlign = "middle";
         quotes[i].style.margin = "10px 0px";
+        quotes[i].style.fontSize = "16px";
     }
 }
 
 function setQuoteSize() {
     var quotes = document.getElementsByClassName("quote");
     for(var i = 0; i < quotes.length; i++) {
-        if(quotes[i].scrollHeight > quotes[i].clientHeight) {
-            var height = quotes[i].scrollHeight;
-            quotes[i].style.height = height + "px";
+        var size = quotes[i].children[0].size;
+        if (size == 1) {
+            quotes[i].style.height = "10px";
+            quotes[i].style.padding = "2px 5px 6px 5px";
+            quotes[i].style.lineHeight = "10px";
+            quotes[i].style.borderLeftWidth = "3px";
+        } else if (size == 2) {
+            quotes[i].style.height = "15px";
+            quotes[i].style.padding = "2px 5px 6px 5px";
+            quotes[i].style.lineHeight = "15px";
+            quotes[i].style.borderLeftWidth = "3px";
+        } else if (size == 3) {
+            quotes[i].style.height = "20px";
+            quotes[i].style.padding = "2px 5px 6px 5px";
+            quotes[i].style.lineHeight = "20px";
+            quotes[i].style.borderLeftWidth = "3px";
+        } else if (size == 4) {
+            quotes[i].style.height = "20px";
+            quotes[i].style.padding = "4px 7.5px 8px 7.5px";
+            quotes[i].style.lineHeight = "20px";
+            quotes[i].style.borderLeftWidth = "4px";
+        } else if (size == 5) {
+            quotes[i].style.height = "30px";
+            quotes[i].style.padding = "4px 15px 6px 15px";
+            quotes[i].style.lineHeight = "30px";
+            quotes[i].style.borderLeftWidth = "4px";
+        } else if (size == 6) {
+            quotes[i].style.height = "50px";
+            quotes[i].style.padding = "4px 15px 8px 15px";
+            quotes[i].style.lineHeight = "50px";
+            quotes[i].style.borderLeftWidth = "5px";
         } else {
-            quotes[i].style.height = "25px";
-            if(quotes[i].scrollHeight > quotes[i].clientHeight) {
-                var height = quotes[i].scrollHeight;
-                quotes[i].style.height = height + "px";
-            }
+            quotes[i].style.height = "60px";
+            quotes[i].style.padding = "4px 20px 8px 20px";
+            quotes[i].style.lineHeight = "60px";
+            quotes[i].style.borderLeftWidth = "5px";
         }
     }
 }
