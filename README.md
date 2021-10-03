@@ -30,6 +30,7 @@ Um editor de texto com formatação Rich-Text.<br>
 - [ ] Adicionar vídeo.
 - [ ] Áudio.
 - [ ] Adicionar um atalho do teclado para cada funcionalidade.
+- [x] Remoção de formatação (apenas para algumas formatações).
 
 # Screenshots
 <img src="screenshots/1.png" alt="Image 1">
